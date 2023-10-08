@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://src/enemies/Carnivorous.gd" type="Script" id=2]
+[ext_resource path="res://res/sounds/sfx/Enemy Hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://res/sounds/sfx/Enemy Hit Sustain.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 420.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 64.0
+
+[node name="Carnivorous" type="KinematicBody2D" groups=["minimap"]]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 1, 0, 0, 1 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+
+[node name="Damage_area" type="Area2D" parent="Sprite"]
+position = Vector2( 52, 0 )
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Damage_area"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/Damage_area"]
+position = Vector2( -104, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Sprite/Damage_area"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.6 )
+position = Vector2( -2.86102e-06, 1.90735e-06 )
+scale = Vector2( 1.5, 1.25 )
+texture = ExtResource( 1 )
+
+[node name="Attack_Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Damage_Timer" type="Timer" parent="Attack_Timer"]
+one_shot = true
+
+[node name="Damage_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "sfx"
+
+[node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "sfx"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Sprite/Damage_area" to="." method="_on_Damage_area_body_entered"]
+[connection signal="body_exited" from="Sprite/Damage_area" to="." method="_on_Damage_area_body_exited"]
+[connection signal="timeout" from="Attack_Timer" to="." method="_on_Attack_Timer_timeout"]

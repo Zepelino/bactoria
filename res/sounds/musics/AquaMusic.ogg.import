@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AquaMusic.ogg-3b03cfacff5557fb584bcff64ff59afb.oggstr"
+
+[deps]
+
+source_file="res://res/sounds/musics/AquaMusic.ogg"
+dest_files=[ "res://.import/AquaMusic.ogg-3b03cfacff5557fb584bcff64ff59afb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

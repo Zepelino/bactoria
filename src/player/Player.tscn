@@ -1,0 +1,639 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://src/player/Bacteria.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://res/images/ui/placeholder.png" type="Texture" id=3]
+[ext_resource path="res://res/images/ui/Velocidade_pressionado.png" type="Texture" id=4]
+[ext_resource path="res://res/sounds/sfx/Pick_Point.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/player/Wave_Controller.gd" type="Script" id=6]
+[ext_resource path="res://res/sounds/sfx/Get Immunity.wav" type="AudioStream" id=7]
+[ext_resource path="res://res/fonts/upheavtt.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://src/player/Control.gd" type="Script" id=9]
+[ext_resource path="res://res/fonts/Retro Gaming.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://res/images/ui/Reproducao_pressionado.png" type="Texture" id=11]
+[ext_resource path="res://res/images/ui/Reproducao_ativado.png" type="Texture" id=12]
+[ext_resource path="res://res/images/ui/desativado.png" type="Texture" id=13]
+[ext_resource path="res://res/images/ui/Vida_ativado.png" type="Texture" id=14]
+[ext_resource path="res://res/images/ui/Estamina_ativado.png" type="Texture" id=15]
+[ext_resource path="res://res/images/ui/Vida_pressionado.png" type="Texture" id=16]
+[ext_resource path="res://res/images/ui/Estamina_pressionado.png" type="Texture" id=17]
+[ext_resource path="res://src/player/Minimap.tscn" type="PackedScene" id=18]
+[ext_resource path="res://res/images/ui/Carnivoro_pressionado.png" type="Texture" id=19]
+[ext_resource path="res://res/images/ui/Carnivoro_ativo.png" type="Texture" id=20]
+[ext_resource path="res://res/sounds/musics/galinhaEnsaboada.mp3" type="AudioStream" id=21]
+[ext_resource path="res://res/sounds/sfx/apparition.wav" type="AudioStream" id=22]
+[ext_resource path="res://res/sounds/sfx/alarm standard.wav" type="AudioStream" id=23]
+[ext_resource path="res://src/player/Pause.gd" type="Script" id=24]
+[ext_resource path="res://src/theme.tres" type="Theme" id=25]
+[ext_resource path="res://res/images/ui/Velocidade_ativo.png" type="Texture" id=26]
+[ext_resource path="res://res/images/ui/Barra_de_Estamina_vazia.png" type="Texture" id=27]
+[ext_resource path="res://res/images/ui/Barra_de_Estamina_cheia.png" type="Texture" id=28]
+[ext_resource path="res://res/images/ui/Carnívoro (desativado).png" type="Texture" id=29]
+[ext_resource path="res://res/images/ui/Reprodução (desativado).png" type="Texture" id=30]
+[ext_resource path="res://res/images/ui/Estamina (desativado).png" type="Texture" id=31]
+[ext_resource path="res://res/images/ui/Vida (desativado).png" type="Texture" id=32]
+[ext_resource path="res://res/images/ui/Velocidade (desativado).png" type="Texture" id=33]
+
+[sub_resource type="DynamicFont" id=9]
+size = 24
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 72
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Immunity"
+length = 2.7
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Control/RichTextLabel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2, 2.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Control/RichTextLabel:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 400, -0.25, 0, 0.25, 0, 252.5, -0.25, 0, 0.2, -7.20081, 192.5, -0.2, 9.46585, 0.25, 0, 60, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2, 2.6 )
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Control/RichTextLabel:self_modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Control/RichTextLabel:self_modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Control/RichTextLabel:self_modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Control/RichTextLabel:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Control/RichTextLabel:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Control/RichTextLabel:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Control/RichTextLabel:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Control/RichTextLabel:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Control/RichTextLabel:rect_size:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 1024, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Control/RichTextLabel:rect_size:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 153, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("Control/RichTextLabel:rect_position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("Control/RichTextLabel:rect_position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 222.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="DynamicFont" id=13]
+size = 84
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 32
+font_data = ExtResource( 10 )
+
+[sub_resource type="Shader" id=14]
+code = "shader_type canvas_item;
+
+uniform float wave_speed = 3.0; //wave loop speed
+uniform float wave_freq = 10.0; //wave vertical freq
+uniform float wave_width = 1; //wave width 
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	vec2 wave_uv_offset;
+	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	//COLOR = vec4(wave_uv_offset,0.0,1.0);
+	COLOR = texture(SCREEN_TEXTURE,scale_UV+wave_uv_offset);
+}"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 14 )
+shader_param/wave_speed = 1.0
+shader_param/wave_freq = 2.0
+shader_param/wave_width = 0.6
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 1.0
+
+[node name="Player" type="Node2D" groups=["Player"]]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 4009.0 ]
+}
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+smoothing_enabled = true
+
+[node name="Point_Sound" type="AudioStreamPlayer2D" parent="Camera"]
+stream = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 9 )
+
+[node name="Stamin" type="TextureProgress" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 26.0
+margin_top = -43.0
+margin_right = 176.0
+margin_bottom = -25.0
+texture_under = ExtResource( 27 )
+texture_progress = ExtResource( 28 )
+nine_patch_stretch = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Stamin"]
+margin_top = -27.0
+margin_right = 40.0
+margin_bottom = 4.0
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "100"
+
+[node name="Points" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -182.0
+margin_top = 137.0
+margin_right = -24.0
+margin_bottom = 168.0
+hint_tooltip = "Points"
+mouse_filter = 0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "100"
+align = 2
+
+[node name="buttons" type="Control" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -178.0
+margin_top = -178.0
+margin_right = -18.0
+margin_bottom = -18.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_constants/vseparation = 32
+custom_constants/hseparation = 32
+columns = 2
+
+[node name="up1" type="TextureButton" parent="CanvasLayer/Control/buttons/GridContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+hint_tooltip = "Carnivorous Hability
+Cost - 100"
+focus_mode = 0
+theme = ExtResource( 25 )
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 19 )
+texture_disabled = ExtResource( 29 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/buttons/GridContainer/up1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "CARN"
+
+[node name="up2" type="TextureButton" parent="CanvasLayer/Control/buttons/GridContainer"]
+margin_left = 96.0
+margin_right = 160.0
+margin_bottom = 64.0
+hint_tooltip = "Increase velocity
+Cost - 10"
+focus_mode = 0
+theme = ExtResource( 25 )
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 4 )
+texture_disabled = ExtResource( 33 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/buttons/GridContainer/up2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "VELOCITY"
+align = 2
+
+[node name="up3" type="TextureButton" parent="CanvasLayer/Control/buttons/GridContainer"]
+margin_top = 96.0
+margin_right = 64.0
+margin_bottom = 160.0
+hint_tooltip = "Increase Stamin
+Cost - 10"
+focus_mode = 0
+theme = ExtResource( 25 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 31 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/buttons/GridContainer/up3"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "STAMIN"
+
+[node name="up4" type="TextureButton" parent="CanvasLayer/Control/buttons/GridContainer"]
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 160.0
+margin_bottom = 160.0
+hint_tooltip = "Increase life
+Cost - 15"
+focus_mode = 0
+theme = ExtResource( 25 )
+enabled_focus_mode = 0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 16 )
+texture_disabled = ExtResource( 32 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/buttons/GridContainer/up4"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "LIFE"
+align = 2
+
+[node name="reproduce" type="TextureButton" parent="CanvasLayer/Control/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+hint_tooltip = "Reproduce
+Cost - 20"
+focus_mode = 0
+theme = ExtResource( 25 )
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 11 )
+texture_disabled = ExtResource( 30 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/buttons/reproduce"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "REPR"
+align = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 222.5
+margin_right = 1280.0
+margin_bottom = 375.5
+rect_min_size = Vector2( 1280, 145 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "
+[center][wave amp=50 freq=2] [fade start=5 length=5] AOBA [/fade] [/wave][/center]"
+text = "
+  AOBA  "
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/RichTextLabel"]
+self_modulate = Color( 0.533333, 0.752941, 0.439216, 1 )
+anchor_right = 1.0
+margin_left = -7.0
+margin_top = 44.0
+margin_right = -7.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 6 )
+text = "-Immunity-"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+root_node = NodePath("../..")
+anims/Immunity = SubResource( 5 )
+anims/RESET = SubResource( 7 )
+
+[node name="Immunity_Sound" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource( 7 )
+
+[node name="shake" type="Control" parent="CanvasLayer/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Minimap" parent="CanvasLayer/Control/shake" instance=ExtResource( 18 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 1056.0
+margin_top = 24.0
+margin_right = 1216.0
+margin_bottom = 184.0
+
+[node name="Wave_Alert" type="Label" parent="CanvasLayer/Control/shake"]
+margin_left = 1096.0
+margin_top = 193.0
+margin_right = 1256.0
+margin_bottom = 214.0
+mouse_filter = 0
+theme = ExtResource( 25 )
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Next Wave in:"
+align = 2
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 24 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+margin_bottom = 409.0
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "PAUSED"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -201.0
+margin_top = 31.0
+margin_right = 201.0
+margin_bottom = 163.0
+custom_constants/separation = 14
+
+[node name="Menu" type="TextureButton" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_right = 402.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 32 )
+rect_pivot_offset = Vector2( -466, 78 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="label" type="Label" parent="CanvasLayer/Pause/VBoxContainer/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = -20.5
+margin_right = 138.0
+margin_bottom = 20.5
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "Menu"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Quit" type="TextureButton" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_top = 46.0
+margin_right = 402.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 40, 32 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="label" type="Label" parent="CanvasLayer/Pause/VBoxContainer/Quit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = -20.5
+margin_right = 138.0
+margin_bottom = 20.5
+custom_colors/font_color = Color( 0.533333, 0.752941, 0.439216, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "Quit"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="water" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 15 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="bacterias" type="Node" parent="."]
+
+[node name="Bacteria" parent="bacterias" instance=ExtResource( 1 )]
+position = Vector2( 77, -52 )
+
+[node name="Bacteria2" parent="bacterias" instance=ExtResource( 1 )]
+position = Vector2( -144, -9 )
+
+[node name="Bacteria3" parent="bacterias" instance=ExtResource( 1 )]
+position = Vector2( -90, 86 )
+
+[node name="Bacteria4" parent="bacterias" instance=ExtResource( 1 )]
+position = Vector2( 83, 71 )
+
+[node name="Change_Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Wave_Controller" type="Node2D" parent="." groups=["wave_control"]]
+script = ExtResource( 6 )
+to_shake = NodePath("../CanvasLayer/Control/shake")
+
+[node name="Wave_Area" type="Area2D" parent="Wave_Controller"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wave_Controller/Wave_Area"]
+modulate = Color( 0.952941, 0.411765, 0.411765, 1 )
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="Wave_Controller"]
+wait_time = 60.0
+autostart = true
+
+[node name="Line2D" type="Line2D" parent="Wave_Controller"]
+visible = false
+scale = Vector2( 100, 100 )
+points = PoolVector2Array( -4.1876, -164, 157.454, -118, 209.38, 4, 188.442, 87, 92.9648, 171, -97.1524, 162, -202.68, 71, -37.6884, -153 )
+width = 0.1
+texture = ExtResource( 13 )
+texture_mode = 1
+
+[node name="Apparition" type="AudioStreamPlayer" parent="Wave_Controller"]
+stream = ExtResource( 22 )
+volume_db = -21.0
+pitch_scale = 0.6
+bus = "sfx"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Wave_Controller"]
+stream = ExtResource( 23 )
+bus = "sfx"
+
+[node name="Music" type="AudioStreamPlayer" parent="Wave_Controller"]
+pause_mode = 2
+stream = ExtResource( 21 )
+volume_db = -15.0
+autoplay = true
+bus = "music"
+
+[connection signal="button_up" from="CanvasLayer/Control/buttons/GridContainer/up1" to="." method="_on_up1_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/buttons/GridContainer/up2" to="." method="_on_up2_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/buttons/GridContainer/up3" to="." method="_on_up3_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/buttons/GridContainer/up4" to="." method="_on_up4_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/buttons/reproduce" to="." method="_on_reproduce_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/shake/Wave_Alert" to="CanvasLayer/Control" method="_on_Wave_Alert_mouse_entered"]
+[connection signal="button_up" from="CanvasLayer/Pause/VBoxContainer/Menu" to="CanvasLayer/Pause" method="_on_Menu_button_up"]
+[connection signal="button_up" from="CanvasLayer/Pause/VBoxContainer/Quit" to="CanvasLayer/Pause" method="_on_Quit_button_up"]
+[connection signal="body_entered" from="Wave_Controller/Wave_Area" to="Wave_Controller" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Wave_Controller/Timer" to="Wave_Controller" method="_on_Timer_timeout"]

@@ -1,0 +1,427 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://src/scenes/Petri.gd" type="Script" id=3]
+[ext_resource path="res://src/enemies/Wander.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/props/point.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/scenes/Enemies.gd" type="Script" id=6]
+[ext_resource path="res://src/props/Pool.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/enemies/Bacteriophage.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/props/Refuge.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 193.921, 32 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Camera2D
+
+var zoom_f = zoom.x
+
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed(\"scroll_down\"):
+		zoom_f += 0.2
+		zoom.x = zoom_f
+		zoom.y = zoom_f
+	if Input.is_action_just_pressed(\"scroll_up\"):
+		zoom_f -= 0.2
+		zoom.x = zoom_f
+		zoom.y = zoom_f
+"
+
+[node name="Petri" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Props" type="Node" parent="."]
+
+[node name="Pool" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( -494, 178 )
+
+[node name="Pool2" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( 1045, -2089 )
+
+[node name="Pool3" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( -1378, 1745 )
+
+[node name="Pool4" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( -1649, -2189 )
+
+[node name="Pool5" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( 2100, 1888 )
+
+[node name="Pool6" parent="Props" instance=ExtResource( 8 )]
+position = Vector2( -2276, -36 )
+
+[node name="Refuge" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( -317, 576 )
+
+[node name="Refuge2" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( 2519, 1189 )
+
+[node name="Refuge3" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( 2818, -1220 )
+
+[node name="Refuge4" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( -2442, -1591 )
+
+[node name="Refuge5" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( -2599, 1118 )
+
+[node name="Refuge6" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( 95, -2973 )
+
+[node name="Refuge7" parent="Props" instance=ExtResource( 10 )]
+position = Vector2( 110, 3143 )
+
+[node name="wall" type="Node2D" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 3, 3 )
+
+[node name="Quadrante1" type="StaticBody2D" parent="wall"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 500, -1227 )
+rotation = 0.394444
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 804, -1053 )
+rotation = 0.654498
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 1045, -813 )
+rotation = 0.916298
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 1312, -175 )
+rotation = 1.4399
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wall/Quadrante1"]
+position = Vector2( 172.255, -1313.83 )
+rotation = 0.1309
+shape = SubResource( 2 )
+
+[node name="Icon" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 172.34, -1313.21 )
+rotation = 0.1309
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon2" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 499.333, -1227 )
+rotation = 0.394444
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon3" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 805, -1053.33 )
+rotation = 0.654498
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon4" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 1046.67, -813 )
+rotation = 0.916298
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon5" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon6" type="Sprite" parent="wall/Quadrante1"]
+position = Vector2( 1311.33, -175.333 )
+rotation = 1.4399
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Quadrante2" type="StaticBody2D" parent="wall"]
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 500, -1227 )
+rotation = 0.394444
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 804, -1053 )
+rotation = 0.654498
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 1045, -813 )
+rotation = 0.916298
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 1312, -175 )
+rotation = 1.4399
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wall/Quadrante2"]
+position = Vector2( 172.255, -1313.83 )
+rotation = 0.1309
+shape = SubResource( 2 )
+
+[node name="Icon" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 172.34, -1313.21 )
+rotation = 0.1309
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon2" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 499.333, -1227 )
+rotation = 0.394444
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon3" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 805, -1053.33 )
+rotation = 0.654498
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon4" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 1046.67, -813 )
+rotation = 0.916298
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon5" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon6" type="Sprite" parent="wall/Quadrante2"]
+position = Vector2( 1311.33, -175.333 )
+rotation = 1.4399
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Quadrante3" type="StaticBody2D" parent="wall"]
+rotation = 3.14159
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 500, -1227 )
+rotation = 0.394444
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 804, -1053 )
+rotation = 0.654498
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 1045, -813 )
+rotation = 0.916298
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 1312, -175 )
+rotation = 1.4399
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wall/Quadrante3"]
+position = Vector2( 172.255, -1313.83 )
+rotation = 0.1309
+shape = SubResource( 2 )
+
+[node name="Icon" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 172.34, -1313.21 )
+rotation = 0.1309
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon2" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 499.333, -1227 )
+rotation = 0.394444
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon3" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 805, -1053.33 )
+rotation = 0.654498
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon4" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 1046.67, -813 )
+rotation = 0.916298
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon5" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon6" type="Sprite" parent="wall/Quadrante3"]
+position = Vector2( 1311.33, -175.333 )
+rotation = 1.4399
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Quadrante4" type="StaticBody2D" parent="wall"]
+rotation = 4.71239
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 500, -1227 )
+rotation = 0.394444
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 804, -1053 )
+rotation = 0.654498
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 1045, -813 )
+rotation = 0.916298
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 1312, -175 )
+rotation = 1.4399
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wall/Quadrante4"]
+position = Vector2( 172.255, -1313.83 )
+rotation = 0.1309
+shape = SubResource( 2 )
+
+[node name="Icon" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 172.34, -1313.21 )
+rotation = 0.1309
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon2" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 499.333, -1227 )
+rotation = 0.394444
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon3" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 805, -1053.33 )
+rotation = 0.654498
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon4" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 1046.67, -813 )
+rotation = 0.916298
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon5" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 1223, -510 )
+rotation = 1.1781
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Icon6" type="Sprite" parent="wall/Quadrante4"]
+position = Vector2( 1311.33, -175.333 )
+rotation = 1.4399
+scale = Vector2( 6.04958, 1 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -134, -167 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 173.5, -21.5 )
+scale = Vector2( 6.42188, 0.328125 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 173.5, -21.5 )
+scale = Vector2( 6.42188, 0.328125 )
+polygon = PoolVector2Array( 32, -32, 32, 32, -32, 32, -32, -32, 31, -32 )
+
+[node name="Sprite2" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 366.801, 142.8 )
+rotation = -1.57079
+scale = Vector2( 6.42188, 0.328125 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 366.801, 142.8 )
+rotation = -1.57079
+scale = Vector2( 6.42188, 0.328125 )
+polygon = PoolVector2Array( 32, -32, 32, 32, -32, 32, -32, -32, 31, -32 )
+
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="Wander" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -33, -106 )
+
+[node name="Wander2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -204, -456 )
+
+[node name="Wander3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 297, -390 )
+
+[node name="point" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( -199, -133 )
+
+[node name="Bacteriophage" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -994, 1888 )
+
+[node name="Bacteriophage2" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( 2398, 785 )
+
+[node name="Bacteriophage3" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( 2002, -1049 )
+
+[node name="Bacteriophage4" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -2049, -1672 )
+
+[node name="Bacteriophage5" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -2864, 905 )
+
+[node name="Bacteriophage6" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -1246, -222 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 14, 14 )
+script = SubResource( 3 )

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/props/Pool.gd" type="Script" id=2]
+[ext_resource path="res://res/images/props/Textura_Poca.png" type="Texture" id=3]
+[ext_resource path="res://res/images/props/Mascara_Poca.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 65.192
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+uniform float wave_speed = 3.0; //wave loop speed
+uniform float wave_freq = 10.0; //wave vertical freq
+uniform float wave_width = 1; //wave width 
+
+void fragment(){
+	
+	vec2 wave_uv_offset;
+	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	
+	vec4 msk = texture(mask, UV + wave_uv_offset);
+	vec4 color = texture(TEXTURE, UV + vec2(cos(TIME/2.0), sin(TIME))/4.0 );
+	color.a = 1.0 - msk.r;
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/wave_speed = 2.166
+shader_param/wave_freq = 10.0
+shader_param/wave_width = 1.307
+shader_param/mask = ExtResource( 4 )
+
+[node name="Pool" type="Area2D" groups=["minimap"]]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 3 )
+scale = Vector2( 1.85938, 1.875 )
+texture = ExtResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Pool_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Pool_body_exited"]

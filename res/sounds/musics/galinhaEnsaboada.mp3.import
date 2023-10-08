@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/galinhaEnsaboada.mp3-f5fdd96d32d50b2e3a82603a5c7cc9bb.mp3str"
+
+[deps]
+
+source_file="res://res/sounds/musics/galinhaEnsaboada.mp3"
+dest_files=[ "res://.import/galinhaEnsaboada.mp3-f5fdd96d32d50b2e3a82603a5c7cc9bb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
